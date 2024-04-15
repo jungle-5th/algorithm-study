@@ -14,11 +14,11 @@ def find_lcs(sequence, allowed_duplication):
             duplication[sequence[r_pointer]] += 1
             continue
         lcs = max(lcs, r_pointer - l_pointer)
+        duplication[sequence[r_pointer]] += 1
         while True:
-            duplication[sequence[r_pointer]] += 1
             duplication[sequence[l_pointer]] -= 1
             if sequence[l_pointer] == sequence[r_pointer]:
-                l_pointer += 1  
+                l_pointer += 1
                 break
             l_pointer += 1 
     return max(lcs, r_pointer - l_pointer + 1)
