@@ -10,8 +10,7 @@ def escape_cave(cave, cave_size):
     while (node_need_find):
         dx = [-1, 1, 0 ,0]
         dy = [0, 0, -1, 1]
-        current_node = node_need_find.popleft()
-        
+        current_node = node_need_find.popleft() 
         for i in range(4):
             x = current_node[1] + dy[i]
             y = current_node[0] + dx[i]
@@ -32,6 +31,6 @@ while(True):
     for _ in range(cave_size):
         cave_line = list(map(int, stdin.readline().split(' ')))
         cave_map.append(cave_line)
-    print(f"Problem {test_try}:" ,end='')
+    print(f"Problem {test_try}: " ,end='')
     print(escape_cave(cave_map, cave_size))
     test_try +=1
