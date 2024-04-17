@@ -13,6 +13,7 @@ def sky_line(buildings, n_building):
                 break
             seek_pointer -= 1
         lp += 1
+        
     while(0 <= rp):
         seek_pointer = rp + 1
         cur_top_height = buildings[rp]
@@ -23,6 +24,7 @@ def sky_line(buildings, n_building):
                 break
             seek_pointer += 1
         rp -= 1
+        
 n_building = int(stdin.readline())
 buildings = buildings = list(map(int, stdin.readline().split(' ')))
 dp_table =[[0,0] for _ in range(n_building)]
