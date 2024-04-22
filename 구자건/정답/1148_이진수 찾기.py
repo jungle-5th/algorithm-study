@@ -17,8 +17,6 @@ def binary_find(binaryDigits, allowed_True_count, order_of_number):
             count_of_combination[digit].append(count_of_combination[digit-1][true_count-1] + count_of_combination[digit-1][true_count])
         combination_sum = sum(count_of_combination[digit])
     
-    
-    
     current_order = before_sum + 1
     digit_pointers = [0 for _ in range(binaryDigits)]
     
