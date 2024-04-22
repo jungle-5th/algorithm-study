@@ -16,7 +16,7 @@ def artful_explosion(string_Line, boomers):
             i = 0
             while i <= pp_range:
                 if string_Line[sp - 1] == boomers[pp_range - i]:
-                    i -= 1
+                    i -=
                 else
     return
 
