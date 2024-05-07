@@ -1,1 +1,0 @@
-{"name":"Local: 4781_사탕가게","url":"/Users/kooja/Desktop/algorithm-study/구자건/4781_사탕가게.py","tests":[{"id":1713749107051,"input":"2 8.00\n700 7.00\n199 2.00\n3 8.00\n700 7.00\n299 3.00\n499 5.00\n0 0.00","output":"796\n798"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/kooja/Desktop/algorithm-study/구자건/4781_사탕가게.py","group":"local","local":true}
