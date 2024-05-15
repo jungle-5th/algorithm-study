@@ -13,20 +13,15 @@ for node in range(2, n_node+1):
     parent_list[cur] = [parent, weight]
     child_list[parent].append([cur, weight])
 
-root = 1
-while root != 0:
-    if parent_list[root][0] == 0:
-        break
-    root = parent_list[root]
-    
 layer_table = list()
 layer_table.append(list())
 layer_table.append(list())
-layer_table[0].append(root)
+layer_table[0].append(1)
 
 bfs = deque()
-bfs.append([root, 0])
-depth[root] = 0
+bfs.append([1, 0])
+depth[1] = 0
+
 while bfs:
     cur_node, cur_layer = bfs.popleft()
     if cur_layer >= len(layer_table)-1:
