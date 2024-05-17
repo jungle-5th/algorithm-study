@@ -9,84 +9,33 @@ using namespace std;
 int N, M, K;
 vector<int> anime;
 
-int find_two_pointer(int lp, int rp) {
-    while(anime[rp] > M) {
-        rp--;
-        if(rp == lp) {
-            break;
-        }
-    }
-    return rp;
-}
-
 int main() {
     cin >> N >> M >> K;
-    anime.resize(N);
     for(int i = 0; i < N; i++) {
-        cin >> anime[i];
+        int t;   cin >> t;
+        if(t > M)    continue;           // M 보다 긴 시간의 애니는 못보니까 안 넣음
+        anime.push_back(t);
     }
-    sort(anime.begin(), anime.end(), greater<int>());           // 내림차순으로 정렬하긴 했지만 오름차순으로 했을 때가 정답일 때도 있음
-    int ans1 = 0;
-    int idx1 = 0;
-    int M2 = M;
-    // 큰거부터 탐색
-    while(1) {
-        while(idx1 < N && anime[idx1] > M) {
-            idx1++;
+    sort(anime.begin(), anime.end());       // 오름차순 정렬
+    vector<int> check;
+    for(int i = 0; i < anime.size(); i++) {
+        int t;
+        if(i < K) {
+            t = anime[i];                   // 한 그룹 안에만 들어갈 수 있는 애니메이션이므로 애니메이션 보는데 걸리는 시간 = anime[i] 
         }
-        if(idx1 >= N) {
-            break;
+        else {
+            t = check[i - K] + anime[i];    // 한 그룹 안에 들어갈 수 없는 수이고, 애니메이션 보는데 걸리는 시간을 최소화해야 하므로
+                                            // 현재부터 K개 전까지 한 그룹, 그 이전에 있는 것을 한 그룹으로 생각
         }
-        if(idx1 + K >= N) {
-            ans += N - idx1;
-            M -= anime[idx1];
-            idx1 = N;
 
+        if(t <= M) {
+            check.push_back(t);             // 현재 애니메이션까지 봤을 때 걸리는 시간의 최소 합이 M보다 작거나 같으면 개수 하나 추가
         }
         else {
-            ans += K;
-            M -= anime[idx1];
-            idx1 += K;
-        }
-        if(M == 0) {
-            break;
+            break;                          // M보다 크면 바로 끝
         }
     }
-
-    // 작은거부터 탐색
-    int ans2 = 0;
-    int idx2 = -1;
-    int l = idx2;
-    reverse(anime.begin(), anime.end());
-    while(1) {
-        l = idx2;
-        if(idx2 + K < N) {
-            idx2 += K;
-        }
-        else {
-            idx2 = N - 1;
-        }
-        while(anime[idx2] > M) {
-            idx2--;
-            if(idx2 <= l) {
-                break;
-            }
-        }
-        if(idx2 > l) {
-            ans2 += idx2 - l;
-            M2 -= anime[idx2];
-        }
-        else {
-            break;
-        }
-        if(M2 < anime[idx2 + 1]) {
-            break;
-        }
-        if(idx2 == N - 1) {
-            break;
-        }
-    }
-    cout << max(ans1, ans2);
+    cout << check.size();
 
     return 0;
 }
