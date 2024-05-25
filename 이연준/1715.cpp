@@ -1,4 +1,4 @@
-//// BOJ 1715
+//// BOJ 1715 카드 정렬하기
 
 #include <iostream>
 #include <vector>

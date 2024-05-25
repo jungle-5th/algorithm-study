@@ -1,4 +1,4 @@
-// BOJ 20922
+// BOJ 20922 겹치는 건 싫어
 
 #include <iostream>
 #include <vector>
