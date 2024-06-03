@@ -22,7 +22,7 @@ def cynical_frog(start_y, start_x, home_y, home_x):
                     return move + 1
                 bfs_list.append((y, x, move+1, super_jump_enable))
                 visited_map[y][x] = move+1
-            if 0 <= x < map_x and 0 <= y < map_y and visited_map[y][x] == INF and super_jump_enable == False:
+            if 0 <= x < map_x and 0 <= y < map_y and visited_map[y][x] == INF and super_jump_enable == False and move + 1 < visited_map[y][x]:
                 if y == home_y and x == home_x:
                     return move + 1
                 bfs_list.append((y, x, move+1, super_jump_enable))
@@ -30,14 +30,14 @@ def cynical_frog(start_y, start_x, home_y, home_x):
             
         if super_jump_enable == True:
             for i in range(0, map_x):
-                if jump_visited_map[cur_y][i] == INF and move + 1 < visited_map[cur_y][x]:
+                if jump_visited_map[cur_y][i] == INF and move + 1 < visited_map[cur_y][i]:
                     if cur_y == home_y and i == home_x:
                         return move + 1
                     bfs_list.append((cur_y, i, move+1, False))
                     jump_visited_map[cur_y][i] = move+1
                     
             for i in range(0, map_y):
-                if jump_visited_map[i][cur_x] == INF and move + 1 < visited_map[y][cur_x]:
+                if jump_visited_map[i][cur_x] == INF and move + 1 < visited_map[i][cur_x]:
                     if i == home_y and cur_x == home_x:
                         return move + 1
                     bfs_list.append((i, cur_x, move+1, False))
