@@ -9,7 +9,6 @@ def dps(stat):
     speed = stat[4]
     
     dps = pow * (100+(str/100)) * (100*(100-min(100, crit_rate)) + (min(crit_rate, 100)*crit_dmg)) * (100 + speed)
-    print(dps)
     return dps
 
 user1_armed_stat = list(map(int, input().split(' ')))
