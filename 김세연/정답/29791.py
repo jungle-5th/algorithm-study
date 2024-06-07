@@ -18,8 +18,7 @@ def sol():
 
 def logic(press, duration, number):
     cnt = 1
-    start = press[0]
-    cur = start
+    cur = press[0]
 
     if number == 1:
         return cnt
