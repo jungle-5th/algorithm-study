@@ -1,39 +1,54 @@
+from sys import stdin
 from collections import deque
-def hide_and_seek(sister, brother):
-    if sister == brother:
+
+input  = stdin.readline
+
+def hide_and_seek(sister_start, brother_start):
+    if sister_start == brother_start:
         return 0
     
-    cur_brother = brother
+    valid_point = [True for _ in range(500001)]
     bfs = deque()
-    table[sister] = True
-    bfs.append((0, sister, brother))
     
-    while cur_brother < 500001:
-        cur = bfs.popleft()
-        time = cur[0]
-        cur_sister = cur[1]
-        cur_brother = cur[2]
-        if table[cur_brother] == True:
-            return time
+    cur_brother = brother_start
+    checked_brother = brother_start
+    bfs.append([sister_start, brother_start, 1])
+    while(bfs):
+        if 500000 < cur_brother + cur_speed:
+            return -1
+
+        cur_sister, cur_brother, cur_speed = bfs.popleft()
+        if checked_brother != cur_brother:
+            is_valid_point(valid_point, cur_brother, cur_speed)
+            checked_brother = cur_brother
         
-        if 0<= cur_sister - 1:
-            if table[cur_sister - 1] == False:
-                table[cur_sister - 1] = True
-                bfs.append((time+1, cur_sister - 1, cur_brother+time+1))
-
-        if cur_sister + 1 < 500001:
-            if table[cur_sister + 1] == False:
-                table[cur_sister + 1] = True
-                bfs.append((time+1, cur_sister + 1, cur_brother+time+1))
-
-        if cur_sister * 2 < 500001:
-            if table[cur_sister * 2] == False:
-                table[cur_sister * 2] = True
-                bfs.append((time+1, cur_sister * 2, cur_brother+time+1))
-        if 500000 < cur_brother+time+1:
-            break
+        if 0 <= 2*cur_sister <= 500000 and valid_point[2*cur_sister] == True:
+            if 2*cur_sister == cur_brother + cur_speed:
+                return cur_speed
+            bfs.append([2*cur_sister, cur_brother + cur_speed, cur_speed+1])
+            
+        if 0 <= 2*cur_sister <= 500000 and valid_point[2*cur_sister] == True:
+            if cur_sister+1 == cur_brother + cur_speed:
+                return cur_speed
+            bfs.append([cur_sister+1, cur_brother + cur_speed, cur_speed+1])
+            
+        if 0 <= cur_sister-1 <= 500000 and valid_point[2*cur_sister] == True:
+            if cur_sister-1 == cur_brother + cur_speed:
+                return cur_speed
+            bfs.append([cur_sister-1, cur_brother + cur_speed, cur_speed+1])
+    
     return -1
-table = [False for _ in range(500001)]
+
+def is_valid_point(valid_point, cur_brother, cur_speed):
+    count = 0
+    brother = cur_brother
+    speed = cur_speed
+    while cur_brother + speed < 500001:
+        count += 1
+        speed += 1
+
+    
 
 sister, brother = map(int, input().split(' '))
+
 print(hide_and_seek(sister, brother))
