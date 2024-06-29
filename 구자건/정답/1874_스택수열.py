@@ -17,7 +17,7 @@ def stack(n_numbers):
                 output.append('-')
                 count += 1
     if count != n_numbers:
-        print('No')
+        print('NO')
         return
     for i in output:
         print(i)
