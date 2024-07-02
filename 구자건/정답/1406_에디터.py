@@ -17,7 +17,7 @@ def editor(original_string, n_edit_cmd):
         elif(edit_cmd) == 'D':
             if 0 < len(right):
                 left = left + right[0]
-                right = right[1:len(right)-1]
+                right = right[1:len(right)]
         
         elif(edit_cmd) == 'B':
             if 0 < len(left):
