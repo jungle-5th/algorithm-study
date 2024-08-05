@@ -21,15 +21,15 @@ def summer(dead_list, food_map):
 
 def fall(tree_list, map_size):
     tree_size = len(tree_list)
-    dy = [1, 1, 1, 0, 0, -1, -1, -1]
-    dx = [1, 0, -1, -1, 1, -1, 0, 1]
+    d = [[1, -1],[1, 0], [1, 1], [0, -1], [0, 1], [-1, -1], [-1, 0], [-1, 1]]
     k = 0
     for i in range(tree_size):
         tree_age, tree_column, tree_row = tree_list[i+k]
         if tree_age % 5 == 0:
             for j in range(8):
-                y = tree_column + dy[j]
-                x = tree_row + dx[j]
+                dx, dy = d[j]
+                y = tree_column + dy
+                x = tree_row + dx
                 
                 if 0 <= x < map_size and 0 <= y < map_size:
                     tree_list.appendleft([1, y, x])
