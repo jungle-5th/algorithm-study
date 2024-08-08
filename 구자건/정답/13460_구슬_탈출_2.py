@@ -53,7 +53,7 @@ def ball_escape(n_column, n_row):
     
     while bfs:
         cur_r_column, cur_r_row, cur_b_column, cur_b_row, cur_count = bfs.popleft()
-        if 10 < cur_count: return -1
+        if 10 <= cur_count: return -1
         for i in range(4):
             next_r_column, next_r_row, next_b_column, next_b_row = move(
                 ball_map, cur_r_column, cur_r_row, cur_b_column, cur_b_row, g_column, g_row, dx[i], dy[i]
